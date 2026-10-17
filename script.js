@@ -159,8 +159,10 @@
     function stop(){ if (timer) { clearInterval(timer); timer = null; } }
     function restart(){ stop(); play(); }
 
+    if (prev && next) { // ponytail: single-image carousels render no arrows
     prev.addEventListener('click', function(e){ e.stopPropagation(); go(idx - 1); restart(); });
     next.addEventListener('click', function(e){ e.stopPropagation(); go(idx + 1); restart(); });
+    }
     dots.forEach(function(d,di){ d.addEventListener('click', function(e){ e.stopPropagation(); go(di); restart(); }); });
     carousel.addEventListener('mouseenter', stop);
     carousel.addEventListener('mouseleave', play);
